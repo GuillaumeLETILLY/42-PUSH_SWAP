@@ -6,7 +6,7 @@
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 22:49:01 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/13 03:19:03 by gletilly         ###   ########.fr       */
+/*   Updated: 2025/01/15 00:41:27 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,17 @@
 # include "utils/ftprintf/ft_printf.h"
 
 /* base nbr */
-typedef struct s_nbr
+typedef struct s_ps
 {
-	int				nbr;
-	struct s_nbr	*next;
-}	t_nbr;
-
-/* struct nbr A & B */
-typedef struct s_data
-{
-	t_nbr	*a;
-	t_nbr	*b;
-}	t_data;
+	int				a;
+	int				b;
+	struct s_ps		*next;
+}	t_ps;
 
 /* parsing core */
 bool	ps_parsing(char **argv);
 
 /* init core */
-t_data	*ps_init_nbr(char **argv, t_data *data);
-
-/* base operations */
-void	pa(t_data *data);
-void	pb(t_data *data);
+t_ps	*ps_init_struct(char **argv);
 
 #endif

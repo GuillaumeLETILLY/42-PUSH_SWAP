@@ -6,57 +6,66 @@
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 00:42:46 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/13 03:24:11 by gletilly         ###   ########.fr       */
+/*   Updated: 2025/01/15 00:41:20 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-static t_nbr	*ps_create_nbr(char *value)
+static t_ps	*ps_create_node(char *value)
 {
-	t_nbr	*new;
+	t_ps	*new;
 
-	new = malloc(sizeof(t_nbr));
+	new = malloc(sizeof(t_ps));
 	if (!new)
 		return (NULL);
-	new->nbr = ft_atol(value);
+	new->a = ft_atol(value);
 	new->next = NULL;
 	return (new);
 }
 
-static void	ps_init_add_back_nbr(char **argv, t_data *data)
+static t_ps	*ps_push_value_to_a(char **value)
 {
+	t_ps	*list;
+	t_ps	*current;
+	t_ps	*new;
 	int		i;
-	t_nbr	*current;
 
-	i = 2;
-	current = data->a;
-	while (argv[i])
+	i = 0;
+	list = NULL;
+	while (value[i])
 	{
-		while (current->next)
-			current = current->next;
-		current->next = ps_create_nbr(argv[i]);
-		if (!current->next)
-			return ;
+		new = ps_create_node(value[i]);
+		if (!list)
+			list = new;
+		else
+		{
+			current = list;
+			while (current->next)
+				current = current->next;
+			current->next = new;
+		}
 		i++;
 	}
+	return (list);
 }
 
-t_data	*ps_init_nbr(char **argv, t_data *data)
-{
-	t_nbr	*first;
+// static void	print_list(t_ps *list)
+// {
+// 	while (list)
+// 	{
+// 		ft_printf("%d\n", list->a);
+// 		list = list->next;
+// 	}
+// }
 
-	data = malloc(sizeof(t_data));
-	if (!data)
+t_ps	*ps_init_struct(char **argv)
+{
+	t_ps	*list;
+
+	argv++;
+	list = ps_push_value_to_a(argv);
+	if (!list)
 		return (NULL);
-	first = ps_create_nbr(argv[1]);
-	if (!first)
-	{
-		free(data);
-		return (NULL);
-	}
-	data->a = first;
-	data->b = NULL;
-	ps_init_add_back_nbr(argv, data);
-	return (data);
+	return (list);
 }

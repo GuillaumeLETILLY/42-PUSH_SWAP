@@ -6,7 +6,7 @@
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 23:19:50 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/13 00:41:48 by gletilly         ###   ########.fr       */
+/*   Updated: 2025/01/15 00:32:23 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static bool	ps_pasring_check_overflow(const char *s)
 	return (true);
 }
 
-static bool ps_check_doublon(char **argv)
+static bool	ps_check_doublon(char **argv)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = 1;

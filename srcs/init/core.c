@@ -6,7 +6,7 @@
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 00:42:46 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/15 00:41:20 by gletilly         ###   ########.fr       */
+/*   Updated: 2025/01/15 02:30:20 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static t_ps	*ps_push_value_to_a(char **value)
 // {
 // 	while (list)
 // 	{
-// 		ft_printf("%d\n", list->a);
+// 		ft_printf("A : %d\n", list->a);
+// 		ft_printf("B : %d\n", list->b);
 // 		list = list->next;
 // 	}
 // }

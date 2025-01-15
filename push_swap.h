@@ -6,7 +6,7 @@
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 22:49:01 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/15 00:41:27 by gletilly         ###   ########.fr       */
+/*   Updated: 2025/01/15 02:27:55 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,9 @@ bool	ps_parsing(char **argv);
 
 /* init core */
 t_ps	*ps_init_struct(char **argv);
+
+/* operations core */
+void	pa(t_ps *list);
+void	pb(t_ps *list);
 
 #endif

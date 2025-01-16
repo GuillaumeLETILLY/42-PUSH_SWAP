@@ -6,7 +6,7 @@
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 03:15:21 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/16 04:16:14 by gletilly         ###   ########.fr       */
+/*   Updated: 2025/01/16 04:16:51 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	rra(t_ps *list)
 {
 	t_ps	*last;
-	t_ps 	*prev;
+	t_ps	*prev;
 	int		tmp;
 
 	if (!list || !list->next)
@@ -39,8 +39,9 @@ void	rra(t_ps *list)
 void	rrb(t_ps *list)
 {
 	t_ps	*last;
+	t_ps	*prev;
 	int		tmp;
-	
+
 	if (!list || !list->next)
 		return ;
 	last = list;
@@ -49,7 +50,7 @@ void	rrb(t_ps *list)
 	tmp = last->b;
 	while (last != list)
 	{
-		t_ps *prev = list;
+		prev = list;
 		while (prev->next != last)
 			prev = prev->next;
 		last->b = prev->b;

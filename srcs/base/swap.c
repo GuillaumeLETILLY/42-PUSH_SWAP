@@ -1,39 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 03:00:13 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/16 02:09:57 by gletilly         ###   ########.fr       */
+/*   Created: 2025/01/15 23:44:58 by gletilly          #+#    #+#             */
+/*   Updated: 2025/01/16 02:11:10 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-void	pb(t_ps *list)
+void	sa(t_ps *list)
 {
-	t_ps	*tmp;
+	int	tmp;
 
 	if (!list || !list->next)
 		return ;
-	tmp = list->next;
-	list->next = list->next;
-	list->b = list->a;
-	list->a = 0;
-	ft_printf("pb\n");
+	tmp = list->a;
+	list->a = list->next->a;
+	list->next->a = tmp;
+	ft_printf("sa\n");
 }
 
-void	pa(t_ps *list)
+void	sb(t_ps *list)
 {
-	t_ps	*tmp;
+	int	tmp;
 
 	if (!list || !list->next)
 		return ;
-	tmp = list->next;
-	list->next = list->next;
-	list->a = list->b;
-	list->b = 0;
-	ft_printf("pa\n");
+	tmp = list->b;
+	list->b = list->next->b;
+	list->next->b = tmp;
+	ft_printf("sb\n");
+}
+
+void	ss(t_ps *list)
+{
+	if (!list || !list->next)
+		return ;
+	sa(list);
+	sb(list);
+	ft_printf("ss\n");
 }

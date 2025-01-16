@@ -13,7 +13,10 @@ PRINTF = $(PRINTF_PATH)/libftprintf.a
 SRCS = 	main.c \
 		srcs/parsing/core.c \
 		srcs/init/core.c \
-		srcs/base/push.c
+		srcs/base/push.c \
+		srcs/base/swap.c \
+		srcs/base/rotate.c \
+		srcs/base/reverse.c
 
 OBJS = $(SRCS:.c=.o)
 

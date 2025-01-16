@@ -6,7 +6,7 @@
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 22:49:01 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/15 02:27:55 by gletilly         ###   ########.fr       */
+/*   Updated: 2025/01/16 04:15:10 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,16 @@ bool	ps_parsing(char **argv);
 t_ps	*ps_init_struct(char **argv);
 
 /* operations core */
+void	sa(t_ps *list);
+void	sb(t_ps *list);
+void	ss(t_ps *list);
 void	pa(t_ps *list);
 void	pb(t_ps *list);
+void	ra(t_ps *list);
+void	rb(t_ps *list);
+void	rr(t_ps *list);
+void	rra(t_ps *list);
+void	rrb(t_ps *list);
+void	rrr(t_ps *list);
 
 #endif

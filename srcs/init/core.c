@@ -6,7 +6,7 @@
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 00:42:46 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/16 02:31:21 by gletilly         ###   ########.fr       */
+/*   Updated: 2025/01/16 23:20:16 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,6 @@ static t_ps	*ps_push_value_to_a(char **value)
 	return (list);
 }
 
-static void	print_list(t_ps *list)
-{
-	while (list)
-	{
-		ft_printf("A : %d\n", list->a);
-		ft_printf("B : %d\n", list->b);
-		list = list->next;
-	}
-}
-
 t_ps	*ps_init_struct(char **argv)
 {
 	t_ps	*list;
@@ -68,8 +58,5 @@ t_ps	*ps_init_struct(char **argv)
 	list = ps_push_value_to_a(argv);
 	if (!list)
 		return (NULL);
-	print_list(list);
-	rra(list);
-	print_list(list);
 	return (list);
 }

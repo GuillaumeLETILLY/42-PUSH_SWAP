@@ -6,7 +6,7 @@
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 22:49:01 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/16 04:15:10 by gletilly         ###   ########.fr       */
+/*   Updated: 2025/01/17 00:43:14 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,9 @@ void	rr(t_ps *list);
 void	rra(t_ps *list);
 void	rrb(t_ps *list);
 void	rrr(t_ps *list);
+
+/* sort base */
+bool	ps_check_sort(t_ps *list);
+void	ps_sort_base(int argc, t_ps *list);
 
 #endif

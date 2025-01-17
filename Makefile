@@ -16,7 +16,8 @@ SRCS = 	main.c \
 		srcs/base/push.c \
 		srcs/base/swap.c \
 		srcs/base/rotate.c \
-		srcs/base/reverse.c
+		srcs/base/reverse.c \
+		srcs/sort/core.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -1,6 +1,6 @@
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra
 RM = rm -f
 
 # Paths to libraries
@@ -17,7 +17,9 @@ SRCS = 	main.c \
 		srcs/base/swap.c \
 		srcs/base/rotate.c \
 		srcs/base/reverse.c \
-		srcs/sort/core.c
+		srcs/sort/sort.c \
+		srcs/sort/utils.c \
+		srcs/sort/big.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,57 +6,89 @@
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 00:42:46 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/16 23:20:16 by gletilly         ###   ########.fr       */
+/*   Updated: 2025/01/20 22:52:23 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-static t_ps	*ps_create_node(char *value)
+static t_node	*ps_create_node(int value)
 {
-	t_ps	*new;
+	t_node	*new;
 
-	new = malloc(sizeof(t_ps));
+	new = malloc(sizeof(t_node));
 	if (!new)
 		return (NULL);
-	new->a = ft_atol(value);
+	new->value = value;
 	new->next = NULL;
+	new->prev = NULL;
 	return (new);
 }
 
-static t_ps	*ps_push_value_to_a(char **value)
+static void	ps_add_back(t_node **head, t_node *new)
 {
-	t_ps	*list;
-	t_ps	*current;
-	t_ps	*new;
-	int		i;
+	t_node	*last;
 
-	i = 0;
-	list = NULL;
-	while (value[i])
+	if (!new)
+		return ;
+	if (!*head)
 	{
-		new = ps_create_node(value[i]);
-		if (!list)
-			list = new;
-		else
-		{
-			current = list;
-			while (current->next)
-				current = current->next;
-			current->next = new;
-		}
-		i++;
+		*head = new;
+		return ;
 	}
-	return (list);
+	last = *head;
+	while (last->next)
+		last = last->next;
+	last->next = new;
+	new->prev = last;
 }
 
-t_ps	*ps_init_struct(char **argv)
+void	ps_free_stack(t_stack *stack)
 {
-	t_ps	*list;
+	t_node	*current;
+	t_node	*tmp;
 
-	argv++;
-	list = ps_push_value_to_a(argv);
-	if (!list)
+	if (!stack)
+		return ;
+	current = stack->a;
+	while (current)
+	{
+		tmp = current->next;
+		free(current);
+		current = tmp;
+	}
+	current = stack->b;
+	while (current)
+	{
+		tmp = current->next;
+		free(current);
+		current = tmp;
+	}
+	free(stack);
+}
+
+t_stack	*ps_init_stack(char **argv)
+{
+	t_stack	*stack;
+	t_node	*new;
+	int		i;
+
+	stack = malloc(sizeof(t_stack));
+	if (!stack)
 		return (NULL);
-	return (list);
+	stack->a = NULL;
+	stack->b = NULL;
+	stack->size_a = 0;
+	stack->size_b = 0;
+	i = 1;
+	while (argv[i])
+	{
+		new = ps_create_node(ft_atoi(argv[i]));
+		if (!new)
+			return (ps_free_stack(stack), NULL);
+		ps_add_back(&stack->a, new);
+		stack->size_a++;
+		i++;
+	}
+	return (stack);
 }

@@ -6,41 +6,45 @@
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 23:44:58 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/16 02:11:10 by gletilly         ###   ########.fr       */
+/*   Updated: 2025/01/20 22:52:25 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-void	sa(t_ps *list)
+static void	swap(t_node **stack)
 {
-	int	tmp;
+	t_node	*first;
+	t_node	*second;
 
-	if (!list || !list->next)
+	if (!*stack || !(*stack)->next)
 		return ;
-	tmp = list->a;
-	list->a = list->next->a;
-	list->next->a = tmp;
+	first = *stack;
+	second = first->next;
+	first->next = second->next;
+	first->prev = second;
+	second->next = first;
+	second->prev = NULL;
+	if (first->next)
+		first->next->prev = first;
+	*stack = second;
+}
+
+void	sa(t_stack *stack)
+{
+	swap(&stack->a);
 	ft_printf("sa\n");
 }
 
-void	sb(t_ps *list)
+void	sb(t_stack *stack)
 {
-	int	tmp;
-
-	if (!list || !list->next)
-		return ;
-	tmp = list->b;
-	list->b = list->next->b;
-	list->next->b = tmp;
+	swap(&stack->b);
 	ft_printf("sb\n");
 }
 
-void	ss(t_ps *list)
+void	ss(t_stack *stack)
 {
-	if (!list || !list->next)
-		return ;
-	sa(list);
-	sb(list);
+	swap(&stack->a);
+	swap(&stack->b);
 	ft_printf("ss\n");
 }

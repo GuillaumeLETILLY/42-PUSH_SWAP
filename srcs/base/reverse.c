@@ -6,62 +6,47 @@
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 03:15:21 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/16 04:16:51 by gletilly         ###   ########.fr       */
+/*   Updated: 2025/01/20 22:52:33 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-void	rra(t_ps *list)
+static void	reverse_rotate(t_node **stack)
 {
-	t_ps	*last;
-	t_ps	*prev;
-	int		tmp;
+	t_node	*last;
+	t_node	*before_last;
 
-	if (!list || !list->next)
+	if (!*stack || !(*stack)->next)
 		return ;
-	last = list;
+	last = *stack;
 	while (last->next)
-		last = last->next;
-	tmp = last->a;
-	while (last != list)
 	{
-		prev = list;
-		while (prev->next != last)
-			prev = prev->next;
-		last->a = prev->a;
-		last = prev;
+		before_last = last;
+		last = last->next;
 	}
-	list->a = tmp;
+	before_last->next = NULL;
+	last->prev = NULL;
+	last->next = *stack;
+	(*stack)->prev = last;
+	*stack = last;
+}
+
+void	rra(t_stack *stack)
+{
+	reverse_rotate(&stack->a);
 	ft_printf("rra\n");
 }
 
-void	rrb(t_ps *list)
+void	rrb(t_stack *stack)
 {
-	t_ps	*last;
-	t_ps	*prev;
-	int		tmp;
-
-	if (!list || !list->next)
-		return ;
-	last = list;
-	while (last->next)
-		last = last->next;
-	tmp = last->b;
-	while (last != list)
-	{
-		prev = list;
-		while (prev->next != last)
-			prev = prev->next;
-		last->b = prev->b;
-		last = prev;
-	}
-	list->b = tmp;
+	reverse_rotate(&stack->b);
 	ft_printf("rrb\n");
 }
 
-void	rrr(t_ps *list)
+void	rrr(t_stack *stack)
 {
-	(rra(list), rrb(list));
+	reverse_rotate(&stack->a);
+	reverse_rotate(&stack->b);
 	ft_printf("rrr\n");
 }

@@ -6,69 +6,62 @@
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 22:46:23 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/17 00:58:49 by gletilly         ###   ########.fr       */
+/*   Updated: 2025/01/20 22:51:53 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	print_list(t_ps *list)
-{
-	while (list)
-	{
-		ft_printf("A : %d\n", list->a);
-		ft_printf("B : %d\n", list->b);
-		list = list->next;
-	}
-}
+// static void	print_stacks(t_stack *stack)
+// {
+// 	t_node	*current_a;
+// 	t_node	*current_b;
 
-static void	ps_free_data(t_ps *list)
-{
-	t_ps	*new;
-	t_ps	*tmp;
+// 	current_a = stack->a;
+// 	current_b = stack->b;
+// 	ft_printf("Stack A:\n");
+// 	while (current_a)
+// 	{
+// 		ft_printf("%d\n", current_a->value);
+// 		current_a = current_a->next;
+// 	}
+// 	ft_printf("Stack B:\n");
+// 	while (current_b)
+// 	{
+// 		ft_printf("%d\n", current_b->value);
+// 		current_b = current_b->next;
+// 	}
+// }
 
-	new = list;
-	while (new)
-	{
-		tmp = new;
-		new = new->next;
-		free(tmp);
-	}
-}
-
-bool	ps_check_sort(t_ps *list)
+static int	ps_check_sorted(t_stack *stack)
 {
-	if (!list || !list->next)
-		return (false);
-	while (list->next)
+	t_node	*current;
+
+	if (!stack->a)
+		return (1);
+	current = stack->a;
+	while (current->next)
 	{
-		if (list->a > list->next->a)
-			return (false);
-		list = list->next;
+		if (current->value > current->next->value)
+			return (0);
+		current = current->next;
 	}
-	return (true);
+	return (!stack->b);
 }
 
 int	main(int argc, char **argv)
 {
-	t_ps	*list;
+	t_stack	*stack;
 
 	if (argc < 2)
 		return (1);
 	if (!ps_parsing(argv))
-		return (ft_putstr_fd("Error\n", 1), 1);
-	list = ps_init_struct(argv);
-	if (!list)
-		return (ft_putstr_fd("Error\n", 1), 1);
-	print_list(list);
-	ft_printf("\n");
-	if (!ps_check_sort(list))
-	{
-		ps_sort_base(argc - 1, list);
-		if (!ps_check_sort(list))
-			ft_printf("NOP\n");
-	}
-	print_list(list);
-	ps_free_data(list);
+		return (ft_putstr_fd("Error\n", 2), 1);
+	stack = ps_init_stack(argv);
+	if (!stack)
+		return (ft_putstr_fd("Error\n", 2), 1);
+	if (!ps_check_sorted(stack))
+		ps_sort(stack);
+	ps_free_stack(stack);
 	return (0);
 }

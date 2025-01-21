@@ -6,46 +6,45 @@
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 01:54:39 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/16 02:38:30 by gletilly         ###   ########.fr       */
+/*   Updated: 2025/01/20 22:52:27 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-void	ra(t_ps *list)
+static void	rotate(t_node **stack)
 {
-	int	tmp;
+	t_node	*first;
+	t_node	*last;
 
-	if (!list && !list->next)
+	if (!*stack || !(*stack)->next)
 		return ;
-	tmp = list->a;
-	while (list->next)
-	{
-		list->a = list->next->a;
-		list = list->next;
-	}
-	list->a = tmp;
+	first = *stack;
+	last = *stack;
+	while (last->next)
+		last = last->next;
+	*stack = first->next;
+	(*stack)->prev = NULL;
+	first->next = NULL;
+	first->prev = last;
+	last->next = first;
+}
+
+void	ra(t_stack *stack)
+{
+	rotate(&stack->a);
 	ft_printf("ra\n");
 }
 
-void	rb(t_ps *list)
+void	rb(t_stack *stack)
 {
-	int	tmp;
-
-	if (!list || !list->next)
-		return ;
-	tmp = list->b;
-	while (list->next)
-	{
-		list->b = list->next->b;
-		list = list->next;
-	}
-	list->b = tmp;
+	rotate(&stack->b);
 	ft_printf("rb\n");
 }
 
-void	rr(t_ps *list)
+void	rr(t_stack *stack)
 {
-	(ra(list), rb(list));
+	rotate(&stack->a);
+	rotate(&stack->b);
 	ft_printf("rr\n");
 }

@@ -6,7 +6,7 @@
 /*   By: gletilly <gletilly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 22:49:01 by gletilly          #+#    #+#             */
-/*   Updated: 2025/01/17 00:43:14 by gletilly         ###   ########.fr       */
+/*   Updated: 2025/01/20 23:05:36 by gletilly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,46 @@
 # include "utils/libft/libft.h"
 # include "utils/ftprintf/ft_printf.h"
 
-/* base nbr */
-typedef struct s_ps
+typedef struct s_node
 {
-	int				a;
-	int				b;
-	struct s_ps		*next;
-}	t_ps;
+	int				value;
+	struct s_node	*next;
+	struct s_node	*prev;
+}	t_node;
+
+typedef struct s_stack
+{
+	t_node	*a;
+	t_node	*b;
+	int		size_a;
+	int		size_b;
+}	t_stack;
 
 /* parsing core */
-bool	ps_parsing(char **argv);
+bool		ps_parsing(char **argv);
+t_stack		*ps_init_stack(char **argv);
+void		ps_free_stack(t_stack *stack);
 
-/* init core */
-t_ps	*ps_init_struct(char **argv);
+/* operations */
+void		sa(t_stack *stack);
+void		sb(t_stack *stack);
+void		ss(t_stack *stack);
+void		pa(t_stack *stack);
+void		pb(t_stack *stack);
+void		ra(t_stack *stack);
+void		rb(t_stack *stack);
+void		rr(t_stack *stack);
+void		rra(t_stack *stack);
+void		rrb(t_stack *stack);
+void		rrr(t_stack *stack);
 
-/* operations core */
-void	sa(t_ps *list);
-void	sb(t_ps *list);
-void	ss(t_ps *list);
-void	pa(t_ps *list);
-void	pb(t_ps *list);
-void	ra(t_ps *list);
-void	rb(t_ps *list);
-void	rr(t_ps *list);
-void	rra(t_ps *list);
-void	rrb(t_ps *list);
-void	rrr(t_ps *list);
+/* utils */
+int			find_min(t_node *stack);
+int			find_max(t_node *stack);
+int			get_index(t_node *stack, int value);
 
-/* sort base */
-bool	ps_check_sort(t_ps *list);
-void	ps_sort_base(int argc, t_ps *list);
+/* sort */
+void		ps_sort_big(t_stack *s);
+void		ps_sort(t_stack *stack);
 
 #endif
